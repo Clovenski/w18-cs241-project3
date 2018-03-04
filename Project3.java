@@ -6,12 +6,35 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+/**
+ * Part of Project 3 for CS 241 Winter 2018
+ */
+
+/**
+ * This class implements the program. The program reads data from two files: "city.dat" and "road.dat",
+ * in order to demonstrate our implementation of a graph and specifically getting a shortest path
+ * in the graph using Dijkstra's algorithm. The program essentially provides the user an interface
+ * in which they can query info about a city, find the shortest path between two cities, insert a
+ * new road between two cities and remove a road between two cities.
+ * <p>
+ * <b>"city.dat" format:</b> for each line in the file, [number code name population elevation] with types respective to a {@link City} object.
+ * <p>
+ * <b>"road.dat" format:</b> for each line in the file, [sourceVertex targetVertex weight] all integers, with the vertices being its number
+ * in the graph, for example sourceVertex 1 is the first vertex in the graph, 2 for second and so on.
+ * @author Joel Tengco
+ *
+ */
 public class Project3 {
 	private Digraph<City> graph;
 	private UI ui;
 	
 	public Project3() {}
 	
+	/**
+	 * Initializes the graph with the data contained in "city.dat" and "road.dat".
+	 * @throws FileNotFoundException If either two files cannot be found.
+	 * @throws IOException If an input/output exception has occurred.
+	 */
 	private void initializeData() throws FileNotFoundException, IOException {
 		// file input variables
 		BufferedReader br;
@@ -95,6 +118,9 @@ public class Project3 {
 		// end read data from file "road.dat"
 	}
 	
+	/**
+	 * Initializes the user interface object with the necessary prompt and options for the user.
+	 */
 	private void initializeUI() {
 		// build the user interface with the following prompt message and options
 		ui = new UI("Command?");
@@ -106,6 +132,10 @@ public class Project3 {
 		ui.addOption('E', "Exit.");
 	}
 	
+	/**
+	 * Executes the Q command of this program, which is to query city information. If the city code
+	 * given by the user does not exist in the graph then an appropriate message is given.
+	 */
 	private void execQCommand() {
 		String userInput;
 		StringTokenizer tokenizer;
@@ -124,6 +154,11 @@ public class Project3 {
 			ui.printToScreen(graph.getVertex(vertexIndex).toString());
 	}
 	
+	/**
+	 * Executes the D command of this program, which is to find the shortest path between two cities.
+	 * If either of the two cities given do not exist in the graph or the target city is unreachable,
+	 * then an appropriate message is given.
+	 */
 	private void execDCommand() {
 		// user input variables
 		String userInput;
@@ -133,7 +168,7 @@ public class Project3 {
 		int sourceIndex;
 		int targetIndex;
 		// graph info variables
-		int[] pathInfo;
+		int[] pathInfo = null;
 		String[] pathCityCodes;
 		String result;
 		
@@ -157,7 +192,13 @@ public class Project3 {
 		}
 		
 		// get an integer array containing the shortest path length along with the path in vertex indices
-		pathInfo = graph.getShortestPath(sourceIndex, targetIndex);
+		try {
+			pathInfo = graph.getShortestPath(sourceIndex, targetIndex);
+		} catch(IllegalArgumentException iae) {
+			ui.printError(iae.getMessage());
+			return;
+		}
+		
 		pathCityCodes = new String[pathInfo.length - 1];
 		for(int i = 1; i < pathInfo.length; i++)
 			pathCityCodes[i - 1] = graph.getVertex(pathInfo[i]).getCityCode();
@@ -176,6 +217,12 @@ public class Project3 {
 		ui.printToScreen(result);
 	}
 	
+	/**
+	 * Executes the I command of this program, which is to insert a new road between two cities.
+	 * An appropriate message is given when the distance given is less than or equal to zero, or
+	 * either of the two cities given do not exist in the graph, or there already exists a road
+	 * in the graph equivalent to the one that the user is trying to insert.
+	 */
 	private void execICommand() {
 		String userInput;
 		StringTokenizer tokenizer;
@@ -231,6 +278,11 @@ public class Project3 {
 		}
 	}
 	
+	/**
+	 * Executes the R command of this program, which is to remove a road between two cities.
+	 * An appropriate message is given when either of the two cities do not exist in the graph
+	 * or the road the user is trying to remove does not exist in the graph.
+	 */
 	private void execRCommand() {
 		String userInput;
 		StringTokenizer tokenizer;
@@ -272,6 +324,10 @@ public class Project3 {
 		}
 	}
 	
+	/**
+	 * Starts the program, and then prompts the user for a command and executes it accordingly,
+	 * until the user opts to exit the program.
+	 */
 	public void start() {
 		try {
 			initializeData();	// read input files and store its data
@@ -315,7 +371,10 @@ public class Project3 {
 			}
 		} while(true);
 	}
-
+	
+	/**
+	 * Entry point for the program.
+	 */
 	public static void main(String[] args) {
 		Project3 program = new Project3();
 		program.start();

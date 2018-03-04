@@ -81,6 +81,15 @@ class Digraph<T extends Comparable<T>> {
 		return false;
 	}
 	
+	/**
+	 * Gets the index of a vertex specified by the given parameter, if it exists in this graph.
+	 * Essentially, this method checks if this graph contains the given element, similar to
+	 * {@linkplain #contains(Comparable)}, but returns the index of the found vertex instead of
+	 * true.
+	 * @param searchElement An element to be checked if an equivalent exists in this graph.
+	 * @return The index of the vertex equivalent to the search element if one is found, otherwise -1
+	 * is returned.
+	 */
 	public int getVertexIndex(T searchElement) {
 		for(int i = 0; i < vertices.length; i++)
 			if(vertices[i].compareTo(searchElement) == 0)
@@ -89,6 +98,13 @@ class Digraph<T extends Comparable<T>> {
 		return -1;
 	}
 	
+	/**
+	 * Removes an edge from a source vertex to a target vertex, if it exists. The source and target
+	 * vertices are identified with the given respective parameters. If there does not exist such
+	 * an edge, then the graph is left unmodified.
+	 * @param sourceIndex The index of the vertex whose the source of the desired edge to remove.
+	 * @param targetIndex The index of the vertex whose the target of the desired edge to remove.
+	 */
 	public void removeEdge(int sourceIndex, int targetIndex) {
 		/*
 		 * for every node in the source vertex's edge list,
@@ -101,10 +117,22 @@ class Digraph<T extends Comparable<T>> {
 			}
 	}
 	
+	/**
+	 * Gets a reference to a vertex in this graph, specified by the given index.
+	 * @param index The index of the vertex to get a reference to.
+	 * @return A reference to the indexed vertex in this graph.
+	 */
 	public T getVertex(int index) {
 		return vertices[index];
 	}
 	
+	/**
+	 * Gets the weight of an edge in this graph. If the edge exists, then the weight is returned,
+	 * otherwise 0 is returned.
+	 * @param sourceIndex The index of the vertex whose the source of the edge.
+	 * @param targetIndex The index of the vertex whose the target of the edge.
+	 * @return The weight of the edge in this graph if it exists, otherwise 0.
+	 */
 	public int getEdgeWeight(int sourceIndex, int targetIndex) {
 		// return the weight of the edge, if found
 		for(EdgeListNode node : edges.get(sourceIndex))
@@ -114,6 +142,18 @@ class Digraph<T extends Comparable<T>> {
 		return 0;
 	}
 	
+	/**
+	 * Gets the shortest path from one vertex to another. The vertices are specified by the given
+	 * indices. This method returns an integer array formatted to have its first element equal to
+	 * the shortest path's length (accumulated weights), and the rest of the array containing the
+	 * path from source to target, as in the index of each vertex contained in the shortest path.
+	 * @param sourceIndex The index of the vertex whose the source of the path.
+	 * @param targetIndex The index of the vertex whose the target of this path.
+	 * @return An integer array containing the path length as its first element and the rest being
+	 * the path represented as the index of each vertex contained in the path.
+	 * @throws IllegalArgumentException If the target vertex is unreachable, in other words, the
+	 * target vertex is not adjacent to any other vertex in this graph.
+	 */
 	public int[] getShortestPath(int sourceIndex, int targetIndex) throws IllegalArgumentException {
 		// variables to find shortest path
 		boolean[] visited;
@@ -204,6 +244,13 @@ class Digraph<T extends Comparable<T>> {
 		return resultArray;
 	}
 	
+	/**
+	 * Used to represent the nodes in each vertex's edge list. This class was needed because
+	 * I needed a way to represent both the weight and the target vertex index for each of the
+	 * edges in the edge list.
+	 * @author Joel Tengco
+	 *
+	 */
 	private class EdgeListNode {
 		private int vertexIndex;
 		private int weight;
@@ -214,6 +261,13 @@ class Digraph<T extends Comparable<T>> {
 		}
 	}
 	
+	/**
+	 * Used to represent the elements in the priority queue in getting the shortest path. Objects
+	 * of this class essentially represent an edge from one vertex to another, in which these
+	 * edges are part of a shortest path in this graph.
+	 * @author Joel Tengco
+	 *
+	 */
 	private class PQElement implements Comparable<PQElement>{
 		private int vertexIndex;
 		private int pathLength;
