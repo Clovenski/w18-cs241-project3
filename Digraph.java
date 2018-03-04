@@ -52,8 +52,8 @@ class Digraph<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * 
-	 * @param newVertex
+	 * Inserts a new vertex into this graph.
+	 * @param newVertex The new vertex to be represented in this graph.
 	 */
 	public void addVertex(T newVertex) {
 		// extend the array length by one
@@ -64,6 +64,14 @@ class Digraph<T extends Comparable<T>> {
 		edges.add(new LinkedList<EdgeListNode>());
 	}
 	
+	/**
+     * Checks if this graph contains the given element. Specifically, this method
+     * returns true if and only if <code>element.compareTo(searchElement) == 0</code>
+     * for some element in this graph, otherwise false.
+     * @param searchElement An element to be checked if an equivalent exists in this graph.
+     * @return True if and only if there exists an equivalent to the search element in this graph,
+     * false otherwise.
+     */
 	public boolean contains(T searchElement) {
 		// check every vertex if they match the search element, return true if there is a match
 		for(T element : vertices)
