@@ -11,3 +11,8 @@ Thus, my task for this project was to simulate a GPS.
 
 The documentation should cover the criteria for how the data files are to be formatted, but I've included the data files provided
 by the course instructor, which could be found in the bin folder.
+
+
+Here is an example of the program:
+
+![picture](../../example/output.png "example output of the program")
