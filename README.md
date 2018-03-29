@@ -12,6 +12,10 @@ Thus, my task for this project was to simulate a GPS.
 The documentation should cover the criteria for how the data files are to be formatted, but I've included the data files provided
 by the course instructor, which could be found in the bin folder.
 
+#### Running the program
+Once in the bin folder, one can run the program by, assuming Java is installed properly:
+
+`java -classpath . edu.cpp.cs.cs241.project3.Project3`
 
 Here is an example of the program:
 
