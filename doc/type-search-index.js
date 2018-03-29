@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"edu.cpp.cs.cs241.project3","l":"City"},{"p":"edu.cpp.cs.cs241.project3","l":"Digraph"},{"p":"edu.cpp.cs.cs241.project3","l":"Project3"},{"p":"edu.cpp.cs.cs241.project3","l":"UI"}]
