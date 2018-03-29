@@ -1,12 +1,14 @@
+/**
+ * Part of Project 3 for CS 241 Winter 2018
+ */
+
+package edu.cpp.cs.cs241.project3;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
-
-/**
- * Part of Project 3 for CS 241 Winter 2018
- */
 
 /**
  * This class will represent a directed, weighted graph. Adding vertices and edges are supported within
@@ -17,7 +19,7 @@ import java.util.Stack;
  * @param <T> The type of objects this graph will contain as its vertices.
  *
  */
-class Digraph<T extends Comparable<T>> {
+public class Digraph<T extends Comparable<T>> {
 	private ArrayList<LinkedList<EdgeListNode>> edges;
 	private T[] vertices;
 	

@@ -1,11 +1,13 @@
+/**
+ * Part of Project 3 for CS 241 Winter 2018
+ */
+
+package edu.cpp.cs.cs241.project3;
+
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-
-/**
- * Part of Project 3 for CS 241 Winter 2018
- */
 
 /**
  * This class represents the user interface that is to be used in the program.
@@ -16,7 +18,7 @@ import java.util.StringTokenizer;
  * @author Joel Tengco
  *
  */
-class UI {
+public class UI {
 	private String promptMessage;
 	private ArrayList<Option> options;
 	private Scanner input;
@@ -24,7 +26,7 @@ class UI {
 	
 	/**
 	 * Constructs a new <code>UI</code> object with the given prompt message.
-	 * @param promptMessage
+	 * @param promptMessage A string that will be used when prompting the user, typically for an input.
 	 */
 	public UI(String promptMessage) {
 		this.promptMessage = promptMessage;

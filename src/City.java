@@ -2,13 +2,15 @@
  * Part of Project 3 for CS 241 Winter 2018
  */
 
+package edu.cpp.cs.cs241.project3;
+
 /**
  * This class will represent the properties of a city, including its city number, code, name,
  * population and elevation.
  * @author Joel Tengco
  *
  */
-class City implements Comparable<City> {
+public class City implements Comparable<City> {
 	private int cityNumber;
 	private String cityCode;
 	private String cityName;

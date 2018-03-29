@@ -1,3 +1,9 @@
+/**
+ * Part of Project 3 for CS 241 Winter 2018
+ */
+
+package edu.cpp.cs.cs241.project3;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -5,10 +11,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-
-/**
- * Part of Project 3 for CS 241 Winter 2018
- */
 
 /**
  * This class implements the program. The program reads data from two files: "city.dat" and "road.dat",
@@ -22,7 +24,7 @@ import java.util.StringTokenizer;
  * <b>"road.dat" format:</b> for each line in the file, [sourceVertex targetVertex weight] all integers, with the vertices being its number
  * in the graph, for example sourceVertex 1 is the first vertex in the graph, 2 for second and so on.
  * @author Joel Tengco
- *
+ * 
  */
 public class Project3 {
 	private Digraph<City> graph;
@@ -374,6 +376,7 @@ public class Project3 {
 	
 	/**
 	 * Entry point for the program.
+	 * @param args Currently does not pertain to this program.
 	 */
 	public static void main(String[] args) {
 		Project3 program = new Project3();
