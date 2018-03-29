@@ -15,4 +15,4 @@ by the course instructor, which could be found in the bin folder.
 
 Here is an example of the program:
 
-![picture](../../example/output.png "example output of the program")
+![picture](example/output.PNG?raw=true "example output of the program")
